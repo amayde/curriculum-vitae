@@ -44,7 +44,7 @@ fun Home(skillsAction: () -> Unit, academicAction: () -> Unit, experiencesAction
 
         Spacer(modifier = Modifier.size(20.dp))
 
-        Skills(skillsAction)
+        SkillsHome(skillsAction)
 
         Spacer(modifier = Modifier.size(20.dp))
 
@@ -138,7 +138,7 @@ fun Experiences(experiencesAction: () -> Unit) {
 }
 
 @Composable
-fun Skills(skillsAction: () -> Unit) {
+fun SkillsHome(skillsAction: () -> Unit) {
     CustomCard(modifier = Modifier
         .fillMaxWidth()
         .clickable {
@@ -148,11 +148,10 @@ fun Skills(skillsAction: () -> Unit) {
         Column(modifier = Modifier.padding(20.dp)) {
             TitleNext("Compétences")
             Spacer(modifier = Modifier.size(5.dp))
-            IconText(text = "Agile", resourceId = R.drawable.ic_gear2, size = 25.dp)
             IconText(text = "Android", resourceId = R.drawable.ic_android, size = 25.dp)
             IconText(text = "Kotlin", resourceId = R.drawable.ic_kotlin, size = 25.dp)
-            IconText(text = "CI/ CD", resourceId = R.drawable.ic_puzzle, size = 25.dp)
-            IconText(text = "Javascript", resourceId = R.drawable.ic_javascript, size = 25.dp)
+            IconText(text = "Agile", resourceId = R.drawable.ic_gear2, size = 25.dp)
+            IconText(text = "Autre", resourceId = R.drawable.ic_more, size = 25.dp)
         }
     }
 }

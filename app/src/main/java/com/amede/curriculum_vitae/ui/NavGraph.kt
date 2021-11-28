@@ -11,6 +11,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.compose.composable
 import com.amede.curriculum_vitae.ui.academic.Academic
 import com.amede.curriculum_vitae.ui.home.Home
+import com.amede.curriculum_vitae.ui.skills.Skills
 
 /**
  * Destinations used in the ([CurriculumVitaeApp]).
@@ -49,10 +50,10 @@ fun NavGraph(
         composable(MainDestinations.EXPERIENCES_ROUTE) { backStackEntry ->
             // TODO
         }
-        composable(MainDestinations.SKILLS_ROUTE) { backStackEntry ->
-            // TODO
+        composable(MainDestinations.SKILLS_ROUTE) {
+            Skills()
         }
-        composable(MainDestinations.ACADEMIC_ROUTE) { backStackEntry ->
+        composable(MainDestinations.ACADEMIC_ROUTE) {
             Academic()
         }
     }
