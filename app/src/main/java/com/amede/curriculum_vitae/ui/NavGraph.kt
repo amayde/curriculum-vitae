@@ -23,7 +23,6 @@ object MainDestinations {
 
 @Composable
 fun NavGraph(
-    modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
     startDestination: String = MainDestinations.HOME_ROUTE
 ) {
@@ -40,6 +39,9 @@ fun NavGraph(
                 },
                 academicAction = {
                     actions.academicAction(backStackEntry)
+                },
+                experiencesAction = {
+                    actions.experiencesAction(backStackEntry)
                 }
             )
         }
@@ -49,28 +51,24 @@ fun NavGraph(
         composable(MainDestinations.SKILLS_ROUTE) { backStackEntry ->
             // TODO
         }
-        composable(MainDestinations.ACADEMIC_ROUTE, content = { backStackEntry ->
+        composable(MainDestinations.ACADEMIC_ROUTE) { backStackEntry ->
             // TODO
-        })
+        }
     }
 }
 
 class MainActions(navController: NavHostController) {
-    // Used from HOME_ROUTE
     val experiencesAction: (from: NavBackStackEntry) -> Unit = { from ->
-        // In order to discard duplicated navigation events, we check the Lifecycle
         if (from.lifecycleIsResumed()) {
             navController.navigate(MainDestinations.EXPERIENCES_ROUTE)
         }
     }
     val skillsAction: (from: NavBackStackEntry) -> Unit = { from ->
-        // In order to discard duplicated navigation events, we check the Lifecycle
         if (from.lifecycleIsResumed()) {
             navController.navigate(MainDestinations.SKILLS_ROUTE)
         }
     }
     val academicAction: (from: NavBackStackEntry) -> Unit = { from ->
-        // In order to discard duplicated navigation events, we check the Lifecycle
         if (from.lifecycleIsResumed()) {
             navController.navigate(MainDestinations.ACADEMIC_ROUTE)
         }

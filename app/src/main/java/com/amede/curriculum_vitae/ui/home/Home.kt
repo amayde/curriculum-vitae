@@ -18,10 +18,11 @@ import com.amede.curriculum_vitae.R
 import com.amede.curriculum_vitae.ui.profil.Contact
 import com.amede.curriculum_vitae.ui.theme.CurriculumvitaeTheme
 import com.amede.curriculum_vitae.ui.utils.CustomCard
+import com.amede.curriculum_vitae.ui.utils.More
 import com.amede.curriculum_vitae.utils.getAge
 
 @Composable
-fun Home(skillsAction: () -> Unit, academicAction: () -> Unit) {
+fun Home(skillsAction: () -> Unit, academicAction: () -> Unit, experiencesAction: () -> Unit) {
     val scrollState = rememberScrollState()
     Column(
         modifier = Modifier
@@ -30,23 +31,41 @@ fun Home(skillsAction: () -> Unit, academicAction: () -> Unit) {
             .verticalScroll(scrollState)
     ) {
         Spacer(modifier = Modifier.size(20.dp))
+
         ImageProfil()
+
         Spacer(modifier = Modifier.size(20.dp))
+
         Introduction()
 
-        // TODO COMPETENCES
         Spacer(modifier = Modifier.size(20.dp))
+
+        Experiences(experiencesAction)
+
+        Spacer(modifier = Modifier.size(20.dp))
+
         Skills(skillsAction)
+
         Spacer(modifier = Modifier.size(20.dp))
+
         Academic(academicAction)
+
         Spacer(modifier = Modifier.size(20.dp))
+
         Ability()
+
         Spacer(modifier = Modifier.size(20.dp))
+
         Language()
+
         Spacer(modifier = Modifier.size(20.dp))
+
         Hobbies()
+
         Spacer(modifier = Modifier.size(20.dp))
+
         Contact()
+
         Spacer(modifier = Modifier.size(20.dp))
     }
 }
@@ -94,6 +113,31 @@ fun Introduction() {
 }
 
 @Composable
+fun Experiences(experiencesAction: () -> Unit) {
+    CustomCard(modifier = Modifier
+        .fillMaxWidth()
+        .clickable {
+            experiencesAction()
+        })
+    {
+        Column(modifier = Modifier.padding(20.dp)) {
+            TitleNext("Emplois")
+            Spacer(modifier = Modifier.size(5.dp))
+
+            Text(text = "Développeur Android - CDI", style = MaterialTheme.typography.h4)
+            Text(text = "Adscientiam | Mars 2020 - À ce jour", style = MaterialTheme.typography.h5)
+            Spacer(modifier = Modifier.size(5.dp))
+            Text(
+                text = "À ce jour je suis développeur android au sein d'une start-up du domaine médical. J'interviens au sein d'une petite équipe android de 3 personnes, nous développons des applications de suivis des patients atteints de maladie incurable (tel que la sclérose en plaques).",
+                style = MaterialTheme.typography.body1
+            )
+            Spacer(modifier = Modifier.size(15.dp))
+            More()
+        }
+    }
+}
+
+@Composable
 fun Skills(skillsAction: () -> Unit) {
     CustomCard(modifier = Modifier
         .fillMaxWidth()
@@ -127,7 +171,13 @@ fun Academic(academicAction: () -> Unit) {
 
             Text(text = "Master 2 - Hitema - Alternace", style = MaterialTheme.typography.h4)
             Text(text = "2019", style = MaterialTheme.typography.h5)
-            Text(text = "Développement  logiciel, mobile et objets connectés", style = MaterialTheme.typography.body1)
+            Text(
+                text = "Développement  logiciel, mobile et objets connectés",
+                style = MaterialTheme.typography.body1
+            )
+
+            Spacer(modifier = Modifier.size(15.dp))
+            More()
         }
     }
 }
