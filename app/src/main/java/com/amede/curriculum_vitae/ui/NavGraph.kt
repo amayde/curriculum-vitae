@@ -17,7 +17,7 @@ import com.amede.curriculum_vitae.ui.home.Home
 object MainDestinations {
     const val HOME_ROUTE = "home"
     const val EXPERIENCES_ROUTE = "experiences"
-    const val COMPETENCES_ROUTE = "competences"
+    const val SKILLS_ROUTE = "skills"
     const val ACADEMIC_ROUTE = "academic"
 }
 
@@ -34,12 +34,14 @@ fun NavGraph(
         startDestination = startDestination
     ) {
         composable(MainDestinations.HOME_ROUTE) { backStackEntry ->
-            Home()
+            Home(skillsAction = {
+                actions.skillsAction(backStackEntry)
+            })
         }
         composable(MainDestinations.EXPERIENCES_ROUTE) { backStackEntry ->
             // TODO
         }
-        composable(MainDestinations.COMPETENCES_ROUTE) { backStackEntry ->
+        composable(MainDestinations.SKILLS_ROUTE) { backStackEntry ->
             // TODO
         }
         composable(MainDestinations.ACADEMIC_ROUTE, content = { backStackEntry ->
@@ -56,10 +58,10 @@ class MainActions(navController: NavHostController) {
             navController.navigate(MainDestinations.EXPERIENCES_ROUTE)
         }
     }
-    val competencesAction: (from: NavBackStackEntry) -> Unit = { from ->
+    val skillsAction: (from: NavBackStackEntry) -> Unit = { from ->
         // In order to discard duplicated navigation events, we check the Lifecycle
         if (from.lifecycleIsResumed()) {
-            navController.navigate(MainDestinations.COMPETENCES_ROUTE)
+            navController.navigate(MainDestinations.SKILLS_ROUTE)
         }
     }
     val academicAction: (from: NavBackStackEntry) -> Unit = { from ->

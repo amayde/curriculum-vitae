@@ -1,11 +1,8 @@
 package com.amede.curriculum_vitae.ui.home
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -21,16 +18,18 @@ import com.amede.curriculum_vitae.R
 import com.amede.curriculum_vitae.ui.profil.Contact
 import com.amede.curriculum_vitae.ui.theme.CurriculumvitaeTheme
 import com.amede.curriculum_vitae.ui.utils.CustomCard
+import com.amede.curriculum_vitae.utils.getAge
 
 @Composable
-fun Home() {
+fun Home(skillsAction: () -> Unit) {
     val scrollState = rememberScrollState()
     Column(
         modifier = Modifier
-            .padding(20.dp)
+            .padding(start = 20.dp, end = 20.dp)
             .fillMaxSize()
             .verticalScroll(scrollState)
     ) {
+        Spacer(modifier = Modifier.size(20.dp))
         ImageProfil()
         Spacer(modifier = Modifier.size(20.dp))
         Introduction()
@@ -38,7 +37,8 @@ fun Home() {
         // TODO COMPETENCES
         // TODO ACADEMIC
         // TODO EXPERIENCES
-
+        Spacer(modifier = Modifier.size(20.dp))
+        Skills(skillsAction)
         Spacer(modifier = Modifier.size(20.dp))
         Ability()
         Spacer(modifier = Modifier.size(20.dp))
@@ -72,6 +72,7 @@ fun ImageProfil() {
                 Column {
                     Text(text = "Antoine Averlant", style = MaterialTheme.typography.h4)
                     Text(text = "Développeur Android", style = MaterialTheme.typography.h5)
+                    Text(text = "${getAge()} ans", style = MaterialTheme.typography.h5)
                 }
             }
         }
@@ -82,24 +83,43 @@ fun ImageProfil() {
 fun Introduction() {
     CustomCard {
         Column(modifier = Modifier.padding(20.dp)) {
-
-            Text(text = "Introduction", style = MaterialTheme.typography.h4)
+            Text(text = "Introduction", style = MaterialTheme.typography.h3)
             Spacer(modifier = Modifier.size(5.dp))
             Text(
-                text = "Je suis un développeur android  qui a acquis de l'expérience professionnelle grâce à mon parcours varié. Depuis plus de trois ans je me spécialise dans le développement android, je souhaite étoffer mes compétences dans ce domaine et m'épanouir au sein d'une équipe agile.",
+                text = "Je suis un développeur android  qui a acquis de l'expérience professionnelle grâce à mon parcours varié.\nDepuis plus de trois ans je me spécialise dans le développement android, je souhaite étoffer mes compétences dans ce domaine et m'épanouir au sein d'une équipe agile.",
                 style = MaterialTheme.typography.body1
             )
-
         }
     }
 }
+
+@Composable
+fun Skills(skillsAction: () -> Unit) {
+    CustomCard(modifier = Modifier
+        .fillMaxWidth()
+        .clickable {
+            skillsAction()
+        })
+    {
+        Column(modifier = Modifier.padding(20.dp)) {
+            TitleNext("Compétences")
+            Spacer(modifier = Modifier.size(5.dp))
+            IconText(text = "Agile", resourceId = R.drawable.ic_gear, size = 25.dp)
+            IconText(text = "Android", resourceId = R.drawable.ic_android, size = 25.dp)
+            IconText(text = "Kotlin", resourceId = R.drawable.ic_kotlin, size = 25.dp)
+            IconText(text = "CI/ CD", resourceId = R.drawable.ic_puzzle, size = 25.dp)
+            IconText(text = "Javascript", resourceId = R.drawable.ic_javascript, size = 25.dp)
+        }
+    }
+}
+
 
 @Composable
 fun Ability() {
     CustomCard {
         Column(modifier = Modifier.padding(20.dp)) {
 
-            Text(text = "Aptitudes", style = MaterialTheme.typography.h4)
+            Text(text = "Aptitudes", style = MaterialTheme.typography.h3)
             Spacer(modifier = Modifier.size(5.dp))
             IconText(text = "Force de proposition", resourceId = R.drawable.ic_aim, size = 25.dp)
             IconText(text = "Autonome", resourceId = R.drawable.ic_gear, size = 25.dp)
@@ -116,7 +136,7 @@ fun Language() {
     CustomCard {
         Column(modifier = Modifier.padding(20.dp)) {
 
-            Text(text = "Langues", style = MaterialTheme.typography.h4)
+            Text(text = "Langues", style = MaterialTheme.typography.h3)
 
             Spacer(modifier = Modifier.size(5.dp))
             IconText(text = "Français", resourceId = R.drawable.ic_french)
@@ -152,7 +172,7 @@ fun Hobbies() {
     CustomCard {
         Column(modifier = Modifier.padding(20.dp)) {
 
-            Text(text = "Loisirs", style = MaterialTheme.typography.h4)
+            Text(text = "Loisirs", style = MaterialTheme.typography.h3)
 
             Spacer(modifier = Modifier.size(5.dp))
             IconText(text = "Skateboard", resourceId = R.drawable.ic_skateboard)
@@ -170,6 +190,32 @@ fun Hobbies() {
 }
 
 @Composable
+fun TitleNext(title: String) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Column {
+            Row {
+                Text(text = title, style = MaterialTheme.typography.h3)
+            }
+        }
+        Column {
+            Row(
+                horizontalArrangement = Arrangement.End,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_next),
+                    contentDescription = "next",
+                    tint = MaterialTheme.colors.onBackground,
+                    modifier = Modifier.size(15.dp)
+                )
+            }
+        }
+    }
+}
+
+@Composable
 fun IconText(text: String, resourceId: Int, size: Dp = 30.dp) {
     Row(
         modifier = Modifier
@@ -179,7 +225,7 @@ fun IconText(text: String, resourceId: Int, size: Dp = 30.dp) {
     ) {
         Icon(
             painter = painterResource(id = resourceId),
-            contentDescription = "link",
+            contentDescription = "icon",
             tint = MaterialTheme.colors.onBackground,
             modifier = Modifier.size(size)
         )
@@ -194,6 +240,6 @@ fun IconText(text: String, resourceId: Int, size: Dp = 30.dp) {
 @Composable
 fun DefaultPreview() {
     CurriculumvitaeTheme {
-        Ability()
+        Skills({})
     }
 }
