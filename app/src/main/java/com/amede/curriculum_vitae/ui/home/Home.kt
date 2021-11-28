@@ -21,7 +21,7 @@ import com.amede.curriculum_vitae.ui.utils.CustomCard
 import com.amede.curriculum_vitae.utils.getAge
 
 @Composable
-fun Home(skillsAction: () -> Unit) {
+fun Home(skillsAction: () -> Unit, academicAction: () -> Unit) {
     val scrollState = rememberScrollState()
     Column(
         modifier = Modifier
@@ -35,10 +35,10 @@ fun Home(skillsAction: () -> Unit) {
         Introduction()
 
         // TODO COMPETENCES
-        // TODO ACADEMIC
-        // TODO EXPERIENCES
         Spacer(modifier = Modifier.size(20.dp))
         Skills(skillsAction)
+        Spacer(modifier = Modifier.size(20.dp))
+        Academic(academicAction)
         Spacer(modifier = Modifier.size(20.dp))
         Ability()
         Spacer(modifier = Modifier.size(20.dp))
@@ -104,7 +104,7 @@ fun Skills(skillsAction: () -> Unit) {
         Column(modifier = Modifier.padding(20.dp)) {
             TitleNext("Compétences")
             Spacer(modifier = Modifier.size(5.dp))
-            IconText(text = "Agile", resourceId = R.drawable.ic_gear, size = 25.dp)
+            IconText(text = "Agile", resourceId = R.drawable.ic_gear2, size = 25.dp)
             IconText(text = "Android", resourceId = R.drawable.ic_android, size = 25.dp)
             IconText(text = "Kotlin", resourceId = R.drawable.ic_kotlin, size = 25.dp)
             IconText(text = "CI/ CD", resourceId = R.drawable.ic_puzzle, size = 25.dp)
@@ -113,6 +113,24 @@ fun Skills(skillsAction: () -> Unit) {
     }
 }
 
+@Composable
+fun Academic(academicAction: () -> Unit) {
+    CustomCard(modifier = Modifier
+        .fillMaxWidth()
+        .clickable {
+            academicAction()
+        })
+    {
+        Column(modifier = Modifier.padding(20.dp)) {
+            TitleNext("Formation")
+            Spacer(modifier = Modifier.size(5.dp))
+
+            Text(text = "Master 2 - Hitema - Alternace", style = MaterialTheme.typography.h4)
+            Text(text = "2019", style = MaterialTheme.typography.h5)
+            Text(text = "Développement  logiciel, mobile et objets connectés", style = MaterialTheme.typography.body1)
+        }
+    }
+}
 
 @Composable
 fun Ability() {
@@ -240,6 +258,6 @@ fun IconText(text: String, resourceId: Int, size: Dp = 30.dp) {
 @Composable
 fun DefaultPreview() {
     CurriculumvitaeTheme {
-        Skills({})
+        Academic({})
     }
 }

@@ -34,9 +34,14 @@ fun NavGraph(
         startDestination = startDestination
     ) {
         composable(MainDestinations.HOME_ROUTE) { backStackEntry ->
-            Home(skillsAction = {
-                actions.skillsAction(backStackEntry)
-            })
+            Home(
+                skillsAction = {
+                    actions.skillsAction(backStackEntry)
+                },
+                academicAction = {
+                    actions.academicAction(backStackEntry)
+                }
+            )
         }
         composable(MainDestinations.EXPERIENCES_ROUTE) { backStackEntry ->
             // TODO
