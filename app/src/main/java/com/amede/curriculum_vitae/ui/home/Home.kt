@@ -48,7 +48,7 @@ fun Home(skillsAction: () -> Unit, academicAction: () -> Unit, experiencesAction
 
         Spacer(modifier = Modifier.size(20.dp))
 
-        Academic(academicAction)
+        AcademicHome(academicAction)
 
         Spacer(modifier = Modifier.size(20.dp))
 
@@ -158,7 +158,7 @@ fun Skills(skillsAction: () -> Unit) {
 }
 
 @Composable
-fun Academic(academicAction: () -> Unit) {
+fun AcademicHome(academicAction: () -> Unit) {
     CustomCard(modifier = Modifier
         .fillMaxWidth()
         .clickable {
@@ -308,6 +308,6 @@ fun IconText(text: String, resourceId: Int, size: Dp = 30.dp) {
 @Composable
 fun DefaultPreview() {
     CurriculumvitaeTheme {
-        Academic({})
+        AcademicHome({})
     }
 }

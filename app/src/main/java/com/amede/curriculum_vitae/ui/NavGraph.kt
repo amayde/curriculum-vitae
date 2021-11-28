@@ -9,6 +9,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.compose.composable
+import com.amede.curriculum_vitae.ui.academic.Academic
 import com.amede.curriculum_vitae.ui.home.Home
 
 /**
@@ -52,7 +53,7 @@ fun NavGraph(
             // TODO
         }
         composable(MainDestinations.ACADEMIC_ROUTE) { backStackEntry ->
-            // TODO
+            Academic()
         }
     }
 }
