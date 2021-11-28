@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.amede.curriculum_vitae.R
 import com.amede.curriculum_vitae.ui.profil.Contact
@@ -34,10 +35,12 @@ fun Home() {
         Spacer(modifier = Modifier.size(20.dp))
         Introduction()
 
-        // TODO COMPETENCES & APTITUDES
+        // TODO COMPETENCES
         // TODO ACADEMIC
         // TODO EXPERIENCES
 
+        Spacer(modifier = Modifier.size(20.dp))
+        Ability()
         Spacer(modifier = Modifier.size(20.dp))
         Language()
         Spacer(modifier = Modifier.size(20.dp))
@@ -92,6 +95,23 @@ fun Introduction() {
 }
 
 @Composable
+fun Ability() {
+    CustomCard {
+        Column(modifier = Modifier.padding(20.dp)) {
+
+            Text(text = "Aptitudes", style = MaterialTheme.typography.h4)
+            Spacer(modifier = Modifier.size(5.dp))
+            IconText(text = "Force de proposition", resourceId = R.drawable.ic_aim, size = 25.dp)
+            IconText(text = "Autonome", resourceId = R.drawable.ic_gear, size = 25.dp)
+            IconText(text = "Dynamique", resourceId = R.drawable.ic_energy, size = 25.dp)
+            IconText(text = "Collaboratif", resourceId = R.drawable.ic_team, size = 25.dp)
+            IconText(text = "Passioné", resourceId = R.drawable.ic_heart, size = 25.dp)
+            IconText(text = "Curieux", resourceId = R.drawable.ic_idea, size = 25.dp)
+        }
+    }
+}
+
+@Composable
 fun Language() {
     CustomCard {
         Column(modifier = Modifier.padding(20.dp)) {
@@ -100,12 +120,28 @@ fun Language() {
 
             Spacer(modifier = Modifier.size(5.dp))
             IconText(text = "Français", resourceId = R.drawable.ic_french)
+            Row {
+                Spacer(modifier = Modifier.size(30.dp))
+                Spacer(modifier = Modifier.size(10.dp))
+                Text(text = "• Langue natale")
+            }
 
-            Spacer(modifier = Modifier.size(5.dp))
             IconText(text = "Anglais", resourceId = R.drawable.ic_english)
-
-            Spacer(modifier = Modifier.size(5.dp))
+            Row {
+                Spacer(modifier = Modifier.size(30.dp))
+                Spacer(modifier = Modifier.size(10.dp))
+                Column {
+                    Text(text = "• Très bon niveau de compréhension")
+                    Text(text = "• Bon niveau oral")
+                    Text(text = "• Bon niveau écrit")
+                }
+            }
             IconText(text = "Espagnol", resourceId = R.drawable.ic_spanish)
+            Row {
+                Spacer(modifier = Modifier.size(30.dp))
+                Spacer(modifier = Modifier.size(10.dp))
+                Text(text = "• Quelques notions")
+            }
         }
     }
 }
@@ -134,7 +170,7 @@ fun Hobbies() {
 }
 
 @Composable
-fun IconText(text: String, resourceId: Int) {
+fun IconText(text: String, resourceId: Int, size: Dp = 30.dp) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -145,7 +181,7 @@ fun IconText(text: String, resourceId: Int) {
             painter = painterResource(id = resourceId),
             contentDescription = "link",
             tint = MaterialTheme.colors.onBackground,
-            modifier = Modifier.size(30.dp)
+            modifier = Modifier.size(size)
         )
 
         Spacer(modifier = Modifier.size(10.dp))
@@ -158,6 +194,6 @@ fun IconText(text: String, resourceId: Int) {
 @Composable
 fun DefaultPreview() {
     CurriculumvitaeTheme {
-        IconText("asfdsf", R.drawable.ic_spanish)
+        Ability()
     }
 }
