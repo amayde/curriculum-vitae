@@ -2,7 +2,6 @@ package com.amede.curriculum_vitae.ui
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Modifier
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.compose.NavHost
@@ -10,6 +9,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.compose.composable
 import com.amede.curriculum_vitae.ui.academic.Academic
+import com.amede.curriculum_vitae.ui.experiences.Experiences
 import com.amede.curriculum_vitae.ui.home.Home
 import com.amede.curriculum_vitae.ui.skills.Skills
 
@@ -48,7 +48,7 @@ fun NavGraph(
             )
         }
         composable(MainDestinations.EXPERIENCES_ROUTE) { backStackEntry ->
-            // TODO
+            Experiences()
         }
         composable(MainDestinations.SKILLS_ROUTE) {
             Skills()

@@ -25,10 +25,6 @@ fun Academic() {
     ) {
         Spacer(modifier = Modifier.size(20.dp))
 
-        ImageProfil()
-
-        Spacer(modifier = Modifier.size(20.dp))
-
         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
             Column {
                 Divider(

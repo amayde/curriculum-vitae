@@ -40,7 +40,7 @@ fun Home(skillsAction: () -> Unit, academicAction: () -> Unit, experiencesAction
 
         Spacer(modifier = Modifier.size(20.dp))
 
-        Experiences(experiencesAction)
+        ExperiencesHome(experiencesAction)
 
         Spacer(modifier = Modifier.size(20.dp))
 
@@ -113,7 +113,7 @@ fun Introduction() {
 }
 
 @Composable
-fun Experiences(experiencesAction: () -> Unit) {
+fun ExperiencesHome(experiencesAction: () -> Unit) {
     CustomCard(modifier = Modifier
         .fillMaxWidth()
         .clickable {
@@ -126,7 +126,7 @@ fun Experiences(experiencesAction: () -> Unit) {
 
             Text(text = "Développeur Android - CDI", style = MaterialTheme.typography.h4)
             Text(text = "Adscientiam | Mars 2020 - À ce jour", style = MaterialTheme.typography.h5)
-            Spacer(modifier = Modifier.size(5.dp))
+            Spacer(modifier = Modifier.size(15.dp))
             Text(
                 text = "À ce jour je suis développeur android au sein d'une start-up du domaine médical. J'interviens au sein d'une petite équipe android de 3 personnes, nous développons des applications de suivis des patients atteints de maladie incurable (tel que la sclérose en plaques).",
                 style = MaterialTheme.typography.body1
