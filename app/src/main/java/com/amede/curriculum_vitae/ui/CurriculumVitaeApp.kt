@@ -8,7 +8,7 @@ import com.amede.curriculum_vitae.ui.theme.CurriculumvitaeTheme
 
 @Composable
 fun CurriculumVitaeApp() {
-    CurriculumvitaeTheme(darkTheme = true) {
+    CurriculumvitaeTheme() {
         val navController = rememberNavController()
         Surface(color = MaterialTheme.colors.background) {
             NavGraph(
